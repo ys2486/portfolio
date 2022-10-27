@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.example.demo.model.Task;
 
 @Mapper
-public interface TaskRepository {
+public interface TaskMapper {
 
   // タスク取得
   public List<Task> findTask();
