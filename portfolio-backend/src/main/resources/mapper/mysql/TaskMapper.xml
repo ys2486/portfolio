@@ -4,8 +4,31 @@
 <!-- Mapperとxmlのマッピング --> 
 <mapper namespace="com.example.demo.repository.TaskMapper">
 
- <!-- ユーザー1件登録 -->
- <select id="findTask" resultType="Task">
-  select * from TASK
- </select>
+  <!-- タスク全件取得 -->
+  <select id="selectTasks" resultType="Task">
+    select * from task
+  </select>
+  
+  <!-- タスク登録 -->
+  <insert id="insertTask">
+    insert into task(
+      name 
+      ,completed 
+      ,created_at 
+      ,updated_at
+    )
+    values(
+      #{name} 
+      ,0
+      ,now()
+      ,null
+    )
+  </insert> 
+  
+  <!-- タスク削除 -->
+  <delete id="deleteTask">
+    delete from 
+      task
+    where id = #{task.id}
+  </delete>
  </mapper>

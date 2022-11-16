@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import java.util.Date;
+
 import lombok.Data;
 
 //@Getter
@@ -11,6 +13,9 @@ public class Task {
 
   private String name;
 
-  private Boolean completed = false;
+  private Boolean completed;
 
+  private Date createdAt;
+
+  private Date updatedAt;
 }
