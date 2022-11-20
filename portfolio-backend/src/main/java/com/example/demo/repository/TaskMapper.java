@@ -19,4 +19,8 @@ public interface TaskMapper {
 
   // タスク削除
   public int deleteTask(@Param("task") Task task);
+
+  // タスク更新
+  public int updateTask(@Param("task") Task task);
+
 }

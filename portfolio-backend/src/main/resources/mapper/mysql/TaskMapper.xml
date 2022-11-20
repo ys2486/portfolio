@@ -31,4 +31,16 @@
       task
     where id = #{task.id}
   </delete>
+  
+  <!-- タスク更新 -->
+  <update id="updateTask">
+    update 
+      task
+    set
+      name = #{task.name} 
+      ,updated_at = now()
+    where
+      id = #{task.id}  
+  </update>
+
  </mapper>
