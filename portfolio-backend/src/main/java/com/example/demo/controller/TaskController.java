@@ -26,26 +26,33 @@ public class TaskController {
 
   private final TaskMapper repository;
 
+//  @Operation(summary = "タスクを全件取得します")
+//  @GetMapping("/tasks")
+//  public List<Task> selectTasks() {
+//    return repository.selectTasks();
+//  }
   @Operation(summary = "タスクを全件取得します")
-  @GetMapping("/tasks")
+  @GetMapping("/api/tasks/get")
   public List<Task> selectTasks() {
     return repository.selectTasks();
   }
 
   @Operation(summary = "タスクを登録します")
-  @PostMapping("/tasks")
+//  @PostMapping("/tasks")
+  @PostMapping("/api/tasks/post")
   public int insertTask(@RequestBody TaskName taskName) {
     return repository.insertTask(taskName);
   }
 
-  @Operation(summary = "タスクを登録します")
-  @DeleteMapping("/tasks")
+  @Operation(summary = "タスクを削除します")
+  @DeleteMapping("/api/tasks/delete")
   public int deleteTask(@RequestBody Task task) {
     return repository.deleteTask(task);
   }
 
   @Operation(summary = "タスクを更新します")
-  @PutMapping("/tasks")
+//  @PutMapping("/tasks")
+  @PutMapping("/api/tasks/put")
   public int updateTask(@RequestBody Task task) {
     return repository.updateTask(task);
   }

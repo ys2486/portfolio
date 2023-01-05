@@ -1,114 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.4</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	  <!-- 2022/10/12 warファイル作成用追加 -->
-	  <!-- 
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.7.4</version>
+    <relativePath /> <!-- lookup parent from repository -->
+  </parent>
+  <!-- 2022/10/12 warファイル作成用追加 -->
+  <!-- 
 	<groupId>com.example</groupId>
 	  -->
-  <groupId>com.example.demo</groupId>	  
-	<artifactId>portfolio-backend</artifactId>
-	 <!-- 2022/10/12 warファイル作成用追加 -->
-	<packaging>war</packaging>
-   <!-- 2022/10/12 warファイル作成用追加 -->	
-	<version>0.0.1-SNAPSHOT</version>
-	<name>portfolio-backend</name>
-	<description>Demo project for Spring Boot</description>
-	<properties>
-  <!-- 2022/10/12 warファイル作成用追加 -->  	
-    <java.version>11</java.version>	
-   <!-- 2022/10/12 warファイル作成用追加 -->     
-   <!-- 
+  <groupId>com.example.demo</groupId>
+  <artifactId>portfolio-backend</artifactId>
+  <!-- 2022/10/12 warファイル作成用追加 START-->
+  <packaging>war</packaging>
+  <!-- 2022/10/12 warファイル作成用追加 END-->
+  <version>0.0.1-SNAPSHOT</version>
+  <name>portfolio-backend</name>
+  <description>Demo project for Spring Boot</description>
+  <properties>
+    <!-- 2022/10/12 warファイル作成用追加 START-->
+    <java.version>11</java.version>
+    <!-- 2022/10/12 warファイル作成用追加 END-->
+    <!-- 
     <java.version>17</java.version>   
    -->
-	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-rest</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-validation</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.mybatis.spring.boot</groupId>
-			<artifactId>mybatis-spring-boot-starter</artifactId>
-			<version>2.2.2</version>
-		</dependency>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-rest</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-validation</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mybatis.spring.boot</groupId>
+      <artifactId>mybatis-spring-boot-starter</artifactId>
+      <version>2.2.2</version>
+    </dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>  		
-    <!-- 2022/10/12 warファイル作成用追加 -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <scope>runtime</scope>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <!-- 2022/10/12 warファイル作成用追加 START-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-tomcat</artifactId>
       <scope>provided</scope>
     </dependency>
-    <!-- 2022/10/12 warファイル作成用追加 -->   		
-		<!-- dependenciesタグ内に、以下の2つを追加します -->
+    <!-- 2022/10/12 warファイル作成用追加 END-->
     <dependency>
       <groupId>org.springdoc</groupId>
-        <artifactId>springdoc-openapi-ui</artifactId>
-        <version>1.6.2</version>
+      <artifactId>springdoc-openapi-ui</artifactId>
+      <version>1.6.2</version>
     </dependency>
     <dependency>
-        <groupId>org.springdoc</groupId>
-        <artifactId>springdoc-openapi-data-rest</artifactId>
-        <version>1.6.2</version>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-data-rest</artifactId>
+      <version>1.6.2</version>
     </dependency>
-    <!-- Model Mapper --> 
-    <dependency> 
-      <groupId>org.modelmapper.extensions</groupId> 
-      <artifactId>modelmapper-spring</artifactId> 
-      <version>2.3.9</version> 
+    <!-- Model Mapper START-->
+    <dependency>
+      <groupId>org.modelmapper.extensions</groupId>
+      <artifactId>modelmapper-spring</artifactId>
+      <version>2.3.9</version>
     </dependency>
-	</dependencies>
-	<build>
-    <finalName>portfolio-backend</finalName>	
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    <!-- Model Mapper END-->
+    <!-- 2022/12/11 spring-security追加 START -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+    <!-- 2022/12/11 spring-security追加 END -->
+    <!-- 2022/12/13 java-jwt追加 START -->
+    <dependency>
+      <groupId>com.auth0</groupId>
+      <artifactId>java-jwt</artifactId>
+      <version>4.2.1</version>
+    </dependency>
+    <!-- 2022/12/11 java-jwt追加 END -->
+  </dependencies>
+  <build>
+    <finalName>portfolio-backend</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>
