@@ -22,7 +22,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     // 認証
     http.authorizeHttpRequests().antMatchers("/").permitAll().antMatchers("/api/login").permitAll()
-        .antMatchers("/api/**").authenticated();
+        .antMatchers("/api/register").permitAll().antMatchers("/api/**").authenticated();
+//    http.authorizeHttpRequests().antMatchers("/").permitAll().antMatchers("/api/login").permitAll()
+//        .antMatchers("/api/**").authenticated();
     // 独自フィルターの利用
     // デフォルトのAuthenticationManagerを利用する
     http.addFilter(new JsonAuthenticationFilter(authenticationManager()));
@@ -38,8 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     corsConfiguration.addAllowedMethod(CorsConfiguration.ALL);
     corsConfiguration.addAllowedHeader(CorsConfiguration.ALL);
     corsConfiguration.addExposedHeader("X-AUTH-TOKEN");
+    // 追加
+    corsConfiguration.addExposedHeader("LOGIN-USER-ID");
     // リクエストを許可するオリジンリスト
-    corsConfiguration.addAllowedOrigin("http://localhost:3001");
+    corsConfiguration.addAllowedOrigin("http://localhost:3000");
+    corsConfiguration.addAllowedOrigin("http://35.79.86.100");
     corsConfiguration.setAllowCredentials(true);
     UrlBasedCorsConfigurationSource corsSource = new UrlBasedCorsConfigurationSource();
     corsSource.registerCorsConfiguration("/**", corsConfiguration);

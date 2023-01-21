@@ -18,4 +18,6 @@ public class Task {
   private Date createdAt;
 
   private Date updatedAt;
+
+  private String createdUser;
 }

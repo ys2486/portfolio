@@ -32,7 +32,6 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
     setRequiresAuthenticationRequestMatcher(new AntPathRequestMatcher("/api/login", "POST"));
     // ログイン用パラメータの設定
     setUsernameParameter("userId");
-//    setUsernameParameter("username");
     setPasswordParameter("password");
 
     // ログイン成功時はtokenを発行してレスポンスにセットする
@@ -41,7 +40,8 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
       String token = JWT.create().withIssuer("com.example.demo") // 発行者
           .withClaim("username", ex.getName()) // keyに対してvalueの設定。汎用的な様々な値を保持できる
           .sign(Algorithm.HMAC256("secret")); // 利用アルゴリズムを指定してJWTを新規作成
-      res.setHeader("X-AUTH-TOKEN", token); // tokeをX-AUTH-TOKENというKeyにセットする
+      res.setHeader("X-AUTH-TOKEN", token); // tokenをX-AUTH-TOKENというKeyにセットする
+      res.setHeader("LOGIN-USER-ID", ex.getName()); // ログイン成功時に、ユーザーIDをLOGIN-USER-IDというKeyにセットする
       res.setStatus(200);
     });
 

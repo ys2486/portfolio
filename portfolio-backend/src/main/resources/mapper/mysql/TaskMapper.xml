@@ -6,7 +6,9 @@
 
   <!-- タスク全件取得 -->
   <select id="selectTasks" resultType="Task">
-    select * from task
+    select * 
+    from task
+    where created_user = #{createdUser}
   </select>
   
   <!-- タスク登録 -->
@@ -16,12 +18,14 @@
       ,completed 
       ,created_at 
       ,updated_at
+      ,created_user
     )
     values(
-      #{name} 
+      #{task.name} 
       ,0
       ,now()
       ,null
+      , #{task.createdUser} 
     )
   </insert> 
   
@@ -38,6 +42,17 @@
       task
     set
       name = #{task.name} 
+      ,updated_at = now()
+    where
+      id = #{task.id}  
+  </update>
+  
+  <!-- タスク完了・未完了戻し -->
+  <update id="updateTaskCompleted">
+    update 
+      task
+    set
+      completed = #{task.completed} 
       ,updated_at = now()
     where
       id = #{task.id}  
