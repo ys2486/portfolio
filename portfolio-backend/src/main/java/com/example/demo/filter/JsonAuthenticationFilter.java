@@ -43,6 +43,12 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
       res.setHeader("X-AUTH-TOKEN", token); // tokenをX-AUTH-TOKENというKeyにセットする
       res.setHeader("LOGIN-USER-ID", ex.getName()); // ログイン成功時に、ユーザーIDをLOGIN-USER-IDというKeyにセットする
       res.setStatus(200);
+      // Cookie
+//      Cookie cookie = new Cookie("tokenTest", token);
+//      cookie.setMaxAge(60 * 60 * 24 * 7);
+//      cookie.setHttpOnly(true);
+//      cookie.setPath("/");
+//      res.addCookie(cookie);
     });
 
     // ログイン失敗時

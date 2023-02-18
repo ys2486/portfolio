@@ -17,7 +17,6 @@ import com.example.demo.repository.TaskMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 
-//@RequestMapping("api/tasks")
 @RequiredArgsConstructor
 @RestController
 //特定のURLからしか使用しない場合は以下の*にURLを指定する
@@ -26,42 +25,31 @@ public class TaskController {
 
   private final TaskMapper repository;
 
-//  @Operation(summary = "タスクを全件取得します")
-//  @GetMapping("/tasks")
-//  public List<Task> selectTasks() {
-//    return repository.selectTasks();
-//  }
-//  @Operation(summary = "タスクを全件取得します")
-//  @GetMapping("/api/tasks/get")
-//  public List<Task> selectTasks(@RequestBody Task task) {
-//    return repository.selectTasks(task);
-//  }
-  @Operation(summary = "タスクを全件取得します")
+  @Operation(summary = "ユーザーに紐付いたタスク全件取得")
   @GetMapping("/api/tasks/get")
   public List<Task> selectTasks(@RequestParam("createdUser") String createdUser) {
     return repository.selectTasks(createdUser);
   }
 
-  @Operation(summary = "タスクを登録します")
-//  @PostMapping("/tasks")
+  @Operation(summary = "タスク新規登録")
   @PostMapping("/api/tasks/post")
   public int insertTask(@RequestBody Task task) {
     return repository.insertTask(task);
   }
 
-  @Operation(summary = "タスクを削除します")
+  @Operation(summary = "タスク削除")
   @DeleteMapping("/api/tasks/delete")
   public int deleteTask(@RequestBody Task task) {
     return repository.deleteTask(task);
   }
 
-  @Operation(summary = "タスクを更新します")
+  @Operation(summary = "タスク内容更新")
   @PutMapping("/api/tasks/put")
   public int updateTask(@RequestBody Task task) {
     return repository.updateTask(task);
   }
 
-  @Operation(summary = "タスクを完了・未完了戻し")
+  @Operation(summary = "タスクを完了・未完了")
   @PutMapping("/api/tasks/put/complete")
   public int updateTaskCompleted(@RequestBody Task task) {
     return repository.updateTaskCompleted(task);
