@@ -11,7 +11,7 @@ import com.example.demo.model.Task;
 public interface TaskMapper {
 
   // タスク全取得
-  public List<Task> selectTasks(String createdUser);
+  public List<Task> selectTasks(int createdUserId);
 
   // タスク登録
   public int insertTask(@Param("task") Task task);

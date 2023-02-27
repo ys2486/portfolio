@@ -8,7 +8,8 @@
   <select id="selectTasks" resultType="Task">
     select * 
     from task
-    where created_user = #{createdUser}
+    where created_user = #{createdUserId}
+    order by updated_at desc
   </select>
   
   <!-- タスク登録 -->
@@ -24,10 +25,10 @@
       #{task.name} 
       ,0
       ,now()
-      ,null
+      ,now()
       , #{task.createdUser} 
     )
-  </insert> 
+  </insert>  
   
   <!-- タスク削除 -->
   <delete id="deleteTask">

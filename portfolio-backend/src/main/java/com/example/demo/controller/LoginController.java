@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-//特定のURLからしか使用しない場合は以下の*にURLを指定する
 @CrossOrigin(origins = "*")
 public class LoginController {
 

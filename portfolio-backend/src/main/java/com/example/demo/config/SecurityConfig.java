@@ -1,9 +1,11 @@
 package com.example.demo.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -22,14 +24,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     // 認証
     http.authorizeHttpRequests().antMatchers("/").permitAll().antMatchers("/api/login").permitAll()
-        .antMatchers("/api/register").permitAll().antMatchers("/api/**").authenticated();
-//    http.authorizeHttpRequests().antMatchers("/").permitAll().antMatchers("/api/login").permitAll()
-//        .antMatchers("/api/**").authenticated();
+        .antMatchers("/api/user/register").permitAll().antMatchers("/api/**").authenticated();
+
     // 独自フィルターの利用
-    // デフォルトのAuthenticationManagerを利用する
+    // デフォルトのAuthenticationManagerを利用し、パスワードハッシュ化用エンコーダーを渡す
+//    http.addFilter(new JsonAuthenticationFilter(authenticationManager(), bCryptPasswordEncoder()));
     http.addFilter(new JsonAuthenticationFilter(authenticationManager()));
+
     // 適切なtokenか判断するフィルター
     http.addFilterAfter(new LoginFilter(), JsonAuthenticationFilter.class);
+
     // csrfを無効にしておく
     // またCookieを利用してcsrf対策を行う
     http.csrf().ignoringAntMatchers("/api/**");
@@ -39,9 +43,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     CorsConfiguration corsConfiguration = new CorsConfiguration();
     corsConfiguration.addAllowedMethod(CorsConfiguration.ALL);
     corsConfiguration.addAllowedHeader(CorsConfiguration.ALL);
+    // トークン用ヘッダー項目
     corsConfiguration.addExposedHeader("X-AUTH-TOKEN");
-    // 追加
-    corsConfiguration.addExposedHeader("LOGIN-USER-ID");
+
     // リクエストを許可するオリジンリスト
     corsConfiguration.addAllowedOrigin("http://localhost:3000");
     corsConfiguration.addAllowedOrigin("http://35.79.86.100");
@@ -49,6 +53,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     UrlBasedCorsConfigurationSource corsSource = new UrlBasedCorsConfigurationSource();
     corsSource.registerCorsConfiguration("/**", corsConfiguration);
     return corsSource;
+  }
+
+  // パスワードハッシュ化用エンコーダー
+  @Bean
+  BCryptPasswordEncoder bCryptPasswordEncoder() {
+    return new BCryptPasswordEncoder();
   }
 
 }

@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.UserEntity;
@@ -17,17 +16,17 @@ import com.example.demo.repository.LoginMapper;
 public class UserDetailServiceImpl implements UserDetailsService {
 
   @Autowired
-  private LoginMapper loginRepository;
+  private LoginMapper loginMapper;
 
   @Override
-  public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+  public UserDetails loadUserByUsername(String mailAddress) throws UsernameNotFoundException {
     try {
-      UserEntity entity = loginRepository.findByUserId(userId);
-      // 認可があればここで設定できる
+      // メールアドレスを元に、ユーザー情報を取得する
+      UserEntity entity = loginMapper.findBymailAddress(mailAddress);
+
       // org.springframework.security.core.userdetails.Userにして返却する
-      // パスワードエンコーダを利用してパスワードはエンコードをかける
-      return new User(entity.getUserId(),
-          PasswordEncoderFactories.createDelegatingPasswordEncoder().encode(entity.getPassword()), new ArrayList<>());
+      // 既にパスワードはハッシュ化済みのため、エンコードかけずにそのまま渡す
+      return new User(entity.getMailAddress(), entity.getPassword(), new ArrayList<>());
     } catch (Exception e) {
       throw new UsernameNotFoundException("ユーザーが見つかりません");
     }

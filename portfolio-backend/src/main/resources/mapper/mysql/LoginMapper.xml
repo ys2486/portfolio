@@ -5,9 +5,9 @@
 <mapper namespace="com.example.demo.repository.LoginMapper">
 
   <!-- ログインユーザー取得 -->
-  <select id="findByUserId" resultType="UserEntity">
+  <select id="findBymailAddress" resultType="UserEntity">
     select * 
       from user
-      where user_id = #{userId}
+      where mail_address = #{mailAddress}
   </select>
  </mapper>

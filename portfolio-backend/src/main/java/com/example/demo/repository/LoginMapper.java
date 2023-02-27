@@ -8,6 +8,6 @@ import com.example.demo.model.UserEntity;
 public interface LoginMapper {
 
   // ログイン処理
-  public UserEntity findByUserId(String userId);
+  public UserEntity findBymailAddress(String mailAddress);
 
 }

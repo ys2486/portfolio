@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+
+<!-- Mapperとxmlのマッピング --> 
+<mapper namespace="com.example.demo.repository.UserMapper">
+
+  <!-- ユーザー登録 -->
+  <insert id="registerUser">
+    insert into user(
+      mail_address
+      ,user_name 
+      ,password 
+      ,created_at    
+    )
+    values(
+      #{registerUser.mailAddress}
+      ,#{registerUser.userName} 
+      ,#{registerUser.password}
+      ,now()
+    )
+  </insert> 
+  
+  <!-- ユーザー情報取得 -->
+  <select id="getUserInfo" resultType="UserEntity">
+    select 
+      user_id
+      ,mail_address
+      ,user_name
+    from user
+    where mail_address = #{loginUserMailAddress}
+  </select>  
+  
+ </mapper>
