@@ -49,6 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // リクエストを許可するオリジンリスト
     corsConfiguration.addAllowedOrigin("http://localhost:3000");
     corsConfiguration.addAllowedOrigin("http://35.79.86.100");
+    // 追加
+    corsConfiguration.addAllowedOrigin("http://10.246.160.32:3000");
+    corsConfiguration.addAllowedOrigin("http://10.246.160.5");
     corsConfiguration.setAllowCredentials(true);
     UrlBasedCorsConfigurationSource corsSource = new UrlBasedCorsConfigurationSource();
     corsSource.registerCorsConfiguration("/**", corsConfiguration);
