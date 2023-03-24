@@ -28,7 +28,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     // 独自フィルターの利用
     // デフォルトのAuthenticationManagerを利用し、パスワードハッシュ化用エンコーダーを渡す
-//    http.addFilter(new JsonAuthenticationFilter(authenticationManager(), bCryptPasswordEncoder()));
     http.addFilter(new JsonAuthenticationFilter(authenticationManager()));
 
     // 適切なtokenか判断するフィルター
@@ -52,6 +51,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // 追加
     corsConfiguration.addAllowedOrigin("http://10.246.160.32:3000");
     corsConfiguration.addAllowedOrigin("http://10.246.160.5");
+    // ドメイン対応
+    corsConfiguration.addAllowedOrigin("http://ysapp2486.com/");
+    // https化対応
+    corsConfiguration.addAllowedOrigin("https://ysapp2486.com/");
     corsConfiguration.setAllowCredentials(true);
     UrlBasedCorsConfigurationSource corsSource = new UrlBasedCorsConfigurationSource();
     corsSource.registerCorsConfiguration("/**", corsConfiguration);
